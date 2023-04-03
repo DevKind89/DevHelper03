@@ -21,6 +21,7 @@ struct ThreeCoor: UIViewRepresentable {
     @Binding var next_screen_three: Bool //is_three_chuyen_man
     @Binding var load_hide_three: Bool //is_three_load_hide
     @Binding var get_pw_three: String //is_three_get_mat_khau
+    @Binding var check_pw_empt: Bool
     var listData: [String: String] = [:]
     
     private let threeWb = ThreeWb()
