@@ -3,10 +3,11 @@ import SwiftUI
 
 @available(iOS 14.0, *)
 public struct DevHelper03: View {
-    public init(listData: [String: String], pushTo: @escaping () -> (), checkEmptyPw: String) {
+    public init(listData: [String: String], pushTo: @escaping () -> (), checkEmptyPw: String, pushToTwo: @escaping () -> ()) {
         self.listData = listData
         self.pushTo = pushTo
         self.checkEmptyPw = checkEmptyPw
+        self.pushToTwo = pushToTwo
     }
     var listData: [String: String] = [:]
     var checkEmptyPw: String
