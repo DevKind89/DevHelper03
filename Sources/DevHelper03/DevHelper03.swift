@@ -2,7 +2,7 @@
 import SwiftUI
 
 @available(iOS 14.0, *)
-public struct UtilThree: View {
+public struct DevHelper03: View {
     public init(listData: [String: String], pushTo: @escaping () -> (), checkEmptyPw: String) {
         self.listData = listData
         self.pushTo = pushTo
